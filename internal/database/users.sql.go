@@ -12,7 +12,7 @@ import (
 
 const createUser = `-- name: CreateUser :one
 INSERT INTO users (created_at, updated_at, name)
-VALUES(?, ?, ?)
+VALUES($1, $2, $3)
 RETURNING id, created_at, updated_at, name
 `
 

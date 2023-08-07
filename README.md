@@ -8,11 +8,17 @@ brew install goose sqlc
 go install github.com/pressly/goose/v3/cmd/goose@latest github.com/kyleconroy/sqlc/cmd/sqlc@latest
 ```
 
+Run the dev database
+
+```sh
+docker compose up -d
+```
+
 To init the database and run any pending migrations navigate to the `./sql/schema` folder and run `goose`
 
 ```sh
 cd ./sql/schema
-goose sqlite3 ../../local.db up
+goose postgres postgres://localdev:password@localhost:5432/rss-agg up
 ```
 
 If you make any changes to the sql queries you'll need to re-generate the related Go functions. From the project root run

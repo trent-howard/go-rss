@@ -11,7 +11,7 @@ import (
 	"github.com/joho/godotenv"
 	"github.com/trent-howard/go-rss/internal/database"
 
-	_ "github.com/mattn/go-sqlite3"
+	_ "github.com/lib/pq"
 )
 
 type apiConfig struct {
@@ -31,7 +31,7 @@ func main() {
 		log.Fatal("DB_URL not configured")
 	}
 
-	conn, err := sql.Open("sqlite3", dbURL)
+	conn, err := sql.Open("postgres", dbURL)
 	if err != nil {
 		log.Fatal("Cannot connect to database")
 	}
