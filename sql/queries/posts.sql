@@ -10,3 +10,10 @@ INSERT INTO posts (
 )
 VALUES($1, $2, $3, $4, $5, $6, $7)
 RETURNING *;
+
+-- name: GetPostsForUser :many
+SELECT posts.* FROM posts
+JOIN feed_follows ff ON posts.feed_id = ff.feed_id
+WHERE ff.user_id = $1
+ORDER BY posts.published_at DESC
+LIMIT $2;
